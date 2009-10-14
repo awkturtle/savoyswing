@@ -1,0 +1,7 @@
+; $Id$
+name = Members
+description = A module for linking offsite people (see the people module) to membership information
+core = 6.x
+package = "Member Management"
+
+

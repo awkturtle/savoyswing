@@ -1,0 +1,14 @@
+name = Savoy Swing Club Custom Drupal Theme
+description = This theme is a drupal 6 copy of the hacked theme from inDevTech or whatever.
+version = 0.1-dev
+core = 6.x
+engine = phptemplate
+stylesheets[all][] = style.css
+
+regions[super_header] = Super Header
+regions[right_header] = Right Header
+regions[sub_header] = Sub Heading
+regions[right] = Right Navigation Section
+regions[left] = Left Navigation Section
+regions[content] = Content
+regions[footer] = Footer

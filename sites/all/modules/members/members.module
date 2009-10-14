@@ -1,0 +1,178 @@
+<?php
+// $Id$
+
+ /**
+ * Show the help;
+ **/
+function members_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case "admin/help#members":
+      $output  = "<p>";
+      $output .= t("A module for linking membership accounts to person records (see people module");
+      $output .="</p>";
+      break;
+    case "admin/people":
+      $output  = "<h3>" . t("Members") . "</h3>";
+      $output .= "<p>";
+      $output .= t("The members module links records of people to other information, such as their drupal login and membership accounts.");
+      $output .= "</p>";
+      break;
+    case "admin/people/members":
+      $output  = "<p>";
+      $output .= t("Use the commands below to search for people in our system.  Remember, they may not have a user account on our website.");
+      $output .= "</p>";
+      break;
+    }
+  return $output;
+} // function members_help
+
+
+function members_menu(){
+  $items = array();
+  $items['admin/people/members'] = array(
+    'title' => 'Members',
+    'description' => 'Administrate members stored in the system (who may or may not have user accounts on the website!)',
+    'page callback' => 'members_admin_people_members',
+    'access arguments' => array('view members'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function _members_get_order_field( &$field ) {
+  //return (isset($field)) ? $field : 'expiration_date'; 
+  return 'expiration_date';
+}
+
+function members_search_form($form_state) {
+  $form['members_search_form_fieldset'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Member\'s Search'),
+  );
+  $form['members_search_form_fieldset']['search_field'] = array(
+			'#type' => 'textfield',
+			'#title' => t("Search Field"),
+			'#size' => 60,
+			'#description' => t("Enter a phrase, it will be matched on First/Last Name, ID and Email."),
+			);
+  $form['members_search_form_fieldset']['pending_members'] = array(
+   		 	'#type' => 'checkbox',
+    		'#title' => t('Pending Members'),
+  );
+  $form['members_search_form_fieldset']['expiration'] = array(
+    		'#type' => 'fieldset',
+    		'#title' => t('Expiration Date'),
+  );
+  $form['members_search_form_fieldset']['expiration']['start_date'] = array(
+    		'#type' => 'textfield',
+    		'#title' => t('Start Date'),
+  );
+  $form['members_search_form_fieldset']['expiration']['end_date'] = array(
+			'#type' => 'textfield',
+    		'#title' => t('End Date'),
+  );
+  $form['submit'] = array(
+			 '#type' => 'submit',
+			 '#value' => 'search',
+			  );
+  return $form;
+}
+
+function members_search_form_validate($form, &$form_state) {
+  $output_error = ""; 
+  $search_value = $form_state['values']['search_field'];
+  if ($search_value == "") {
+	$output_error .= 'No Search Entered!<br />';
+  }
+  $start_date = $form_state['values']['start_date'];
+  $end_date = $form_state['values']['end_date'];
+  if ( $start_date != "" && $end_date != "" && intval($start_date) >= intval($end_date)) {
+    $output .= 'Start time must be before the End time!<br />';
+  } else if ( $start_date != "" && $end_date != "" ) {
+	$output_error .= 'You must enter a Start time and an End time!<br />';
+  }
+  if ( $output_error != "") {
+	form_set_error('', t($output_error));
+  }
+}
+
+function members_search_form_submit($form, &$form_state) {
+  global $members_search_values;
+  $member_search_values = $form_state['values'];
+  $search_field = $member_search_values['search_field'];
+  //Found out how to redirect and establish get variables...
+  /*
+  $form_state['redirect'] = array( 
+			substr(request_uri(),1), 
+			array(
+				"search"=>$search_field,
+				"start_date"=>$member_search_values['start_date'],
+				"end_date"=>$member_search_values['end_date'],
+				"pending_members"=>$member_search_values['pending_members']
+				));
+  */
+}
+
+function members_admin_people_members() {
+  $order_field = _members_get_order_field($_GET['order']);
+
+  $output = "<div id='members_search_form_wrapper'>";
+  $output .= drupal_get_form('members_search_form');
+  $output .= "</div>";
+  $output .="<br /><br />";
+  $headers = array( 
+		   '<a href="?order=first_name"> First Name </a>',
+		   "<a href='?order=last_name'> Last Name </a>",
+		   "<a href='?order=email'> Email </a>",
+		   "<a href='?order=phone'> Phone </a>",
+		   "<a href='?order=current_member'> Current Member? </a>",
+		   "<a href='?order=expiration_date'> Expiration Date </a>",
+		    );
+  $headers_for_tablize = array( "First Name", "Last Name", "Email", "Phone", "Member?", "Expiration Date" );
+  
+
+  $username = $user->login;
+  $page = isset( $_GET["page"] ) ? intval($_GET["page"]) - 1 : 0;
+  $page = $page < 0 ? 0 : $page;
+  $per_page = intval(variable_get("people_maxdisp_$username", 75));
+  $offset   = $page * $per_page;
+
+  $query = "SELECT p.first_name, p.last_name, p.email, p.phone, IFNULL( DATE(now()) < m.expiration_date, 0 ) as member, m.expiration_date FROM
+                   {people} p JOIN {members} m on p.id = m.person_id ORDER BY $order_field DESC LIMIT $offset, $per_page";
+
+  $result = db_query($query);
+  while( $assoc_row = db_fetch_array($result) ) {
+    $assoc[] = $assoc_row;
+  }
+  
+  $rows = people_tablize_rows($assoc, $headers_for_tablize);
+  
+  // Render Table
+  $output .= theme('table', $headers, $rows, array("style" => "font-size: 0.85em;"));
+  $output .= "<br /><br />";
+  $output .= '<div id="pages">';
+  if ( $page != 0 ) {
+    $prev_page = $page; // because the db is 0 indexed, but the front end is 1 indexed
+    $output .= "<a href='?page=$prev_page'> &lt;&lt; Previous </a>";
+  }
+  $next_page = $page + 2;  // because the db is 0 indexed, but the front end is 1 indexed
+  $output .="<a href='?page=$next_page'> Next &gt;&gt; </a>";
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+* Valid permissions for this module
+* @return array An array of valid permissions for the people module
+**/
+function members_perm() {
+  return array('view members', 'edit members', 'administrate members');
+} // function members_perm
+
+
+
+
+
+// no closing "?\>" tag because this is a drupal module!

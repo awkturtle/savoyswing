@@ -1,0 +1,33 @@
+[19-Sep-2009 23:51:10] PHP Parse error:  syntax error, unexpected ':', expecting ';' in /home/savoy0/public_html/drupal6/sites/all/themes/ssctheme/node.tpl.php on line 10
+[19-Sep-2009 23:51:33] PHP Parse error:  syntax error, unexpected ':', expecting ';' in /home/savoy0/public_html/drupal6/sites/all/themes/ssctheme/node.tpl.php on line 10
+[19-Sep-2009 23:51:35] PHP Parse error:  syntax error, unexpected ':', expecting ';' in /home/savoy0/public_html/drupal6/sites/all/themes/ssctheme/node.tpl.php on line 10
+[26-Sep-2009 19:30:44] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 9
+[26-Sep-2009 19:31:58] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 9
+[26-Sep-2009 21:33:54] PHP Parse error:  syntax error, unexpected ')' in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 61
+[26-Sep-2009 21:34:15] PHP Fatal error:  Cannot break/continue 1 level in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 61
+[29-Sep-2009 21:04:10] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 122
+[29-Sep-2009 21:37:47] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 105
+[29-Sep-2009 21:37:49] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 105
+[29-Sep-2009 21:38:12] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 105
+[29-Sep-2009 21:38:39] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 105
+[29-Sep-2009 23:07:32] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 124
+[29-Sep-2009 23:21:23] PHP Parse error:  syntax error, unexpected ']', expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 149
+[29-Sep-2009 23:21:25] PHP Parse error:  syntax error, unexpected ']', expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 149
+[29-Sep-2009 23:33:08] PHP Fatal error:  Call to undefined function  db_fetch_assoc() in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 129
+[30-Sep-2009 00:05:02] PHP Parse error:  syntax error, unexpected ';' in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 133
+[30-Sep-2009 23:39:26] PHP Parse error:  syntax error, unexpected '}' in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 155
+[01-Oct-2009 01:06:21] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 45
+[01-Oct-2009 01:06:52] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 50
+[01-Oct-2009 01:07:17] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/people/people.module on line 120
+[01-Oct-2009 01:29:48] PHP Fatal error:  Function name must be a string in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 57
+[12-Oct-2009 20:00:43] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 48
+[12-Oct-2009 20:49:33] PHP Fatal error:  Call to undefined function  drupal_get_from() in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 62
+[13-Oct-2009 13:39:50] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 85
+[13-Oct-2009 13:40:13] PHP Parse error:  syntax error, unexpected $end in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 159
+[13-Oct-2009 15:39:11] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 53
+[13-Oct-2009 15:56:20] PHP Parse error:  syntax error, unexpected '}' in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 108
+[13-Oct-2009 16:10:38] PHP Parse error:  syntax error, unexpected '}' in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 107
+[13-Oct-2009 16:14:16] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 107
+[13-Oct-2009 16:22:46] PHP Parse error:  syntax error, unexpected '}' in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 108
+[13-Oct-2009 16:37:04] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 112
+[13-Oct-2009 16:44:20] PHP Parse error:  syntax error, unexpected '}' in /home/savoy0/public_html/drupal6/sites/all/modules/members/members.module on line 46

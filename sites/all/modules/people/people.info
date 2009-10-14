@@ -1,0 +1,5 @@
+; $Id$
+name = People
+description = A module for linking user records to records created for off-line people
+core = 6.x
+package = "Member Management"
