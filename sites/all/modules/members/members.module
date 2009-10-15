@@ -102,7 +102,7 @@ function members_search_form_submit($form, &$form_state) {
   $member_search_values = $form_state['values'];
   $search_field = $member_search_values['search_field'];
   //Found out how to redirect and establish get variables...
-  $form_dumpt = print_r($form_state, false);
+  $form_dumpt = print_r($form_state, true);
   drupal_set_message("<pre>$form_dump</pre>");
   /*
   $form_state['redirect'] = array( 
